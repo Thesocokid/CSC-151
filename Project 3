@@ -1,0 +1,139 @@
+/*
+Project 3: Energy Consumption 
+This program calculates energy consumption for a 300 watt refrigerator running 24 hours a day.
+Name: Chandler H Godfrey
+Date: 03-25-2018
+CSC_120_91
+*/
+
+import java.util.Scanner; // Scanner class
+import java.io.*; // for using printWriter
+
+
+public class Project3Godfrey
+{
+   public static void main(String[] args) throws IOException
+   {
+     
+     double Watt_Hours_Per_Day = 7.2 , total_Cost = 0; 
+      double month = 30, Usage_A_Month = 216 , Monthly_Cost = 0, average_Monthly_Cost = 0;
+      int kilowatt = 1000, kWh_Rate , numberOfBills = 0, unit_Watt = 300;
+      int Watt_Hours = 0, Hours_Used = 0, hours_in_a_day = 24;
+      String Utitlity_Company ;
+            String utilityCompany, state, city, streetAddress, zip;
+       
+     
+   //Calls the title method and displays the title
+     displayTitle();
+
+   
+   //Calls the wattHour calculation method and grabs the value calculated from it
+     Watt_Hours = Watt_Hours(unit_Watt, hours_in_a_day);
+   
+   //Calls the kilosPerDay calc method and likewise returns the value.
+      kilowattsPerDay = kilowattsPerDay(wattHours);
+   
+   
+   
+   //Calls and returns the value calculated in the kilosPerMonth method.
+      kilowattsPerMonth = kilowattsPerMonth(kilowattsPerDay);
+   
+   //Displays and reads the file's output within the main method.
+      Output(i, kilowattsPerMonth); 
+   
+   
+ public static void displayTitle()
+          {
+          System.out.println("Energy Consumption for a 300 Watt" +
+                               "Refrigerator Running 24 Hours a Day");
+          }
+
+    public static double kilowattsPerDay(int wattHrs)
+   {
+      double kiloPerDay = (wattHrs / (double)(1000));
+      return kiloPerDay;
+   }
+   
+   
+   public static void file_reader(int kWh_Rate, double Usage_A_Month) throws IOException
+   {  
+   
+      double Watt_Hours_Per_Day = 7.2 , total_Cost = 0; 
+      double month = 30, Usage_A_Month = 216 , Monthly_Cost = 0, average_Monthly_Cost = 0;
+      int kilowatt = 1000, kWh_Rate , numberOfBills = 0, unit_Watt = 300;
+      int Watt_Hours = 0, Hours_Used = 0, hours_in_a_day = 24;
+      String Utitlity_Company ;
+            String utilityCompany, state, city, streetAddress, zip;
+       
+      
+      File file = new File("utility.txt");
+      Scanner inputFile = new Scanner(file);
+      
+   
+       
+       while(inputFile.hasNext())
+      {
+         utilityCompany = inputFile.nextLine();
+         streetAddress = inputFile.nextLine();
+         city = inputFile.nextLine();
+         state = inputFile.nextLine();
+         zip = inputFile.nextLine();
+         kWh_Rate = inputFile.nextInt();
+         if(inputFile.hasNext())
+         {
+             inputFile.nextLine();//this handles the end of the file to avoid an exception}
+             inputFile.nextLine();
+         }
+               
+             
+         
+      
+         Monthly_Cost = 0.01 * Usage_A_Month * kWh_Rate; //Step 4: Determining the monthly cost.
+      
+         ++ numberOfBills;   // Counting the number of bills in the loop. 
+         
+         total_Cost += Monthly_Cost; 
+         
+         
+        
+         
+         //System.out.println("Energy Consumption for a 300 Watt" +
+                               //"Refrigerator Running 24 Hours a Day. \n\n");        
+ 
+ 
+         System.out.println("Utility Company: " + utilityCompany);
+         System.out.println();
+         System.out.println(city +"," + state+ " "+zip + "\n");
+         System.out.println("KwH Rate: "  + kWh_Rate + " Cents \n" );
+         System.out.printf("Monthly Cost: $%.2f \n" ,Monthly_Cost);
+         System.out.println("\n");
+       
+         
+         
+         
+      
+ }
+         average_Monthly_Cost = total_Cost / numberOfBills;
+          
+         inputFile.close();
+          
+         System.out.printf("Average monthly cost : $%.2f \n", average_Monthly_Cost );  
+ }     
+   
+//break next output
+     
+     
+     
+     
+    } 
+          
+       
+
+
+
+
+
+
+
+
+}
