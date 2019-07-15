@@ -1,0 +1,91 @@
+/*
+Project 2: Energy Consumption 
+This program calculates energy consumption for a 300 watt refrigerator running 24 hours a day.
+Name: Chandler H Godfrey
+Date: 03-25-2018
+CSC_120_91
+*/
+
+import java.util.Scanner; // Scanner class
+import java.io.*; // for using printWriter
+
+
+public class Project2Hughes
+{
+   public static void main(String[] args) throws IOException
+   {
+      File file = new File("utility.txt");
+      Scanner inputFile = new Scanner(file);
+      
+      double Watt_Hours_Per_Day , total_Cost = 0;
+      double month = 30, Usage_A_Month = 300, Monthly_Cost = 0, average_Monthly_Cost = 0 ;
+      int kilowatt = 1000, kWh_Rate, numberOfBills = 0;
+      int Watt_Hours = 0, Hours_Used = 0;
+      String Utitlity_Company ;
+      
+      String utilityCompany, state, city, streetAddress, zip;
+      
+       
+       while(inputFile.hasNext())
+      {
+         utilityCompany = inputFile.nextLine();
+         streetAddress = inputFile.nextLine();
+         city = inputFile.nextLine();
+         state = inputFile.nextLine();
+         zip = inputFile.nextLine();
+         kWh_Rate = inputFile.nextInt();
+         if(inputFile.hasNext())
+         {
+             inputFile.nextLine();//this handles the end of the file to avoid an exception}
+             inputFile.nextLine();
+         }
+               
+             
+          Watt_Hours_Per_Day = Watt_Hours * Hours_Used; //Step 1:Calculating wattage per day.
+                           
+     
+         double Step_Two_Rate = Watt_Hours_Per_Day / kilowatt; //Step 2:Determining the kilowatt rate.
+      
+                                                     
+         Usage_A_Month = Step_Two_Rate  * month; //Step 3:Determining the usage a month.
+      
+      
+         Monthly_Cost =  Usage_A_Month * kWh_Rate; //Step 4: Determining the monthly cost.
+      
+      
+      
+      
+      
+         Monthly_Cost = .01 * Usage_A_Month * kWh_Rate; //Step 4: Determining the monthly cost.
+      
+         ++ numberOfBills;   // Counting the number of bills in the loop. 
+         
+         total_Cost += Monthly_Cost; 
+         
+         
+        
+         
+                  
+ 
+ 
+         System.out.println("Utility Company: " + utilityCompany);
+         System.out.println();
+         System.out.println(city +"," + state+ " "+zip);
+         System.out.println("KwH Rate:"  + kWh_Rate + " Cents " );
+         System.out.printf("Monthly Cost: $%.2f \n" ,Monthly_Cost);
+         System.out.println();
+       
+         
+         
+         
+      
+ }
+          average_Monthly_Cost = total_Cost / numberOfBills;
+          
+          inputFile.close();
+          
+          System.out.printf("average Monthly Cost : $%.2f \n", average_Monthly_Cost );  
+ }     
+   
+     
+}      
