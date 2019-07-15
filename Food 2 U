@@ -1,0 +1,143 @@
+/**
+*This is code for a basic food ordering serive.
+*@author (Chandler H Godfrey)
+*@version (03-20-2018)
+*/
+
+
+import java.io.*;
+import java.util.Scanner;
+
+public class food_2_U
+{
+   public static void main(String[] args)
+   {
+   
+      Scanner keyboard = new Scanner(System.in);
+      int Basic, Advanced, Premium;
+      char goAgain;
+      double displayCost;
+      do
+      {
+         int subType = getMenu();
+         int numPeople = getNumPeople();
+         double cost = getSubscriptionCost(subType, numPeople); 
+         displayCost(subType, numPeople, cost);
+      
+      
+         System.out.println("Do you want to run the program again? (Y/N)");
+         goAgain = keyboard.nextLine().toUpperCase().charAt(0);
+      }
+      while(goAgain == 'Y');
+   }
+
+   public static int getMenu()
+   {
+      Scanner keyboard = new Scanner(System.in);
+      int choice;
+      System.out.println("Choose one of the follwing options.");
+      System.out.println("1.Basic.");
+      System.out.println("2.Advanced.");
+      System.out.println("3.Premium.");
+      choice = keyboard.nextInt();
+   
+   
+   
+      while(choice < 1 ||choice  > 3)
+      {
+         System.out.println("Invalid choice option");
+         choice = keyboard.nextInt();
+      }
+   
+      return choice;
+   
+   }
+
+   public static int getNumPeople()
+   {
+      Scanner keyboard = new Scanner(System.in);
+ 
+      System.out.println("Please enter number of people.");
+      int numPeople = keyboard.nextInt();
+      while(numPeople < 1)
+      {
+         System.out.println("invailid input.");
+         numPeople = keyboard.nextInt();
+      }
+   
+      return numPeople;
+   
+   
+   }
+   public static double getSubscriptionCost(int subType, int numPeople)
+   {
+      final int BASIC_SUBSCRIPTION = 1;
+      final int ADVANCED_SUBSCRIPTION = 2;
+      final int PREMIUM_SUBSCRIPTION = 3;
+      double costPerPerson=0;
+   
+      if(subType == BASIC_SUBSCRIPTION)
+      {
+         if(numPeople < 4)
+         {
+            costPerPerson = 60;
+         }
+         else 
+         {
+            costPerPerson = 55;
+         }
+      }
+      else if(subType == ADVANCED_SUBSCRIPTION)
+      {
+         if(numPeople < 4)
+         {
+            costPerPerson = 75;
+         }
+         else 
+         {
+            costPerPerson = 70;
+         }
+      
+      }
+      
+      else if(subType == PREMIUM_SUBSCRIPTION)
+      {
+         if(numPeople <= 2)
+         {
+            costPerPerson = 100;
+         }
+         
+         else
+         {
+            costPerPerson = 90;
+         }
+       }  
+         double totalCost = costPerPerson * numPeople;
+         return totalCost;
+      
+   }
+   public static void displayCost(int subType, int numPeople, double cost)
+   {
+      String subTypeAsString = "";
+      switch(subType)
+      {
+         case 1: subTypeAsString = "Basic";
+            break;
+         case 2: subTypeAsString = "Advanced";
+            break;
+         case 3: subTypeAsString = "Premuium";
+            break;
+      
+      
+      
+      }
+   
+   
+      System.out.printf("The cost for a %s subcription that feeds %d people is: $%.2f",subTypeAsString,subType,cost);
+   }
+
+
+} 
+
+
+
